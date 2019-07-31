@@ -7,6 +7,7 @@ from .models import Blog
 
 def home(request):
     blogs = Blog.objects
+    
     return render(request, 'home.html', {'blogs': blogs})
 
 def detail(request, blog_id):
@@ -22,5 +23,6 @@ def create(request):
     blog.title = request.GET['title']
     blog.body = request.GET['body']
     blog.pub_date = timezone.datetime.now()
+   
     blog.save()
     return redirect('/blog/' + str(blog.id))
